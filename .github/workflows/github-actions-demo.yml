@@ -16,5 +16,6 @@ jobs:
         run: |
           ls ${{ github.workspace }}
           echo "pr test"
+          echo "pr test3"
       - run: echo "🍏 This job's status is ${{ job.status }}."
              

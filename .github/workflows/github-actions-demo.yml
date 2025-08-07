@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Show the CI workflow URL
-        run: echo "CI workflow URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: 'echo "CI workflow URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"'

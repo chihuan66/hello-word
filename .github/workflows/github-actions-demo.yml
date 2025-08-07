@@ -16,4 +16,5 @@ jobs:
         run: |
           ls ${{ github.workspace }}
           echo "💡"
+          ech0 "rdma"
       - run: echo "🍏 This job's status is ${{ job.status }}."

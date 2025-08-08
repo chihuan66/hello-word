@@ -9,3 +9,6 @@ jobs:
     steps:
       - name: Show the CI workflow URL
         run: 'echo "CI workflow URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"'
+      
+      - name: test
+        run: 'echo "successful "'

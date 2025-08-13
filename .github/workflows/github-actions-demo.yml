@@ -8,4 +8,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Show the CI workflow URL
-        run: 'echo "CI workflow URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"'
+        run: ｜
+            cd /aa
+
+      - name: Save dmesg if failed
+        if: ${{ failure() }}
+        run: dmesg > dmesg.log
+      
+      - name: Upload dmesg log
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: dmesg-log
+          path: dmesg.log

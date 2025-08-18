@@ -17,11 +17,21 @@ jobs:
         run: ｜
             cd /aa
 
+      - name: Create GitHub Release and Tag
+        if: steps.check_tag.outputs.should_release == 'true' && steps.vars.outputs.is_dry_run == 'false'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_BRANCH: ${{ steps.release_branch.outputs.BRANCH_NAME }}
+        run: |
+          gh release create ${{ steps.version.outputs.RELEASE_TAG }} \
+            --target "$RELEASE_BRANCH" \
+            --title "Release ${{ steps.version.outputs.RELEASE_TAG }}" \
+            --generate-notes
+
       - name: Create Issue on Failure
         if: failure()
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh issue create \
             --title "Release Failed for ${{ steps.version.outputs.RELEASE_TAG || 'N/A' }} on $(date +'%Y-%m-%d')" \
             --body "The release workflow failed. See the full run for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            --label "kind/bug,release-failure"

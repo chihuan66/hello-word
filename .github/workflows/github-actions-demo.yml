@@ -12,9 +12,9 @@ jobs:
             cd /aa
 
       - name: Create Issue on Failure
+        if: failure()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: failure()
         run: |
           gh issue create \
             --title "Release Failed for ${{ steps.version.outputs.RELEASE_TAG || 'N/A' }} on $(date +'%Y-%m-%d')" \

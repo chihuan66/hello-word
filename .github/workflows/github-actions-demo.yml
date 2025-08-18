@@ -12,6 +12,8 @@ jobs:
             cd /aa
 
       - name: Create Issue on Failure
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: failure()
         run: |
           gh issue create \

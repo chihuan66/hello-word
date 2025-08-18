@@ -6,6 +6,8 @@ on:
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+    permissions:
+     issues: write  # 明确授予创建 issue 的权限
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

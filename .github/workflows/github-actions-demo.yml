@@ -18,7 +18,7 @@ jobs:
             cd /aa
 
       - name: Create GitHub Release and Tag
-        if: steps.check_tag.outputs.should_release == 'true' && steps.vars.outputs.is_dry_run == 'false'
+        if: failure()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_BRANCH: ${{ steps.release_branch.outputs.BRANCH_NAME }}

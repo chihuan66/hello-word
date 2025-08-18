@@ -20,10 +20,11 @@ jobs:
             cd /aa
 
       - name: Create Issue on Failure
-        if: failure()  # 仅在失败时运行
+        if: failure()
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 必需权限
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh issue create \
             --title "Workflow Failed: ${{ github.workflow }} #${{ github.run_number }}" \
-            --body "The workflow failed. See run: [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" \
+            --body "The workflow failed on $(date +'%Y-%m-%d %H:%M:%S'). See run: [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" \
+

@@ -25,4 +25,3 @@ jobs:
           gh issue create \
             --title "Workflow Failed: ${{ github.workflow }} #${{ github.run_number }}" \
             --body "The workflow failed. See run: [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" \
-            --label "bug,ci-failure"

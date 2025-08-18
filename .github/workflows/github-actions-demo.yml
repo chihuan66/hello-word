@@ -25,6 +25,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh issue create \
-            --title "Workflow Failed: ${{ github.workflow }} #${{ github.run_number }}" \
-            --body "The workflow failed on $(date +'%Y-%m-%d %H:%M:%S'). See run: [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" \
-
+            --title "Workflow Failed: ${{ github.workflow }} #${{ github.run_number }} ($(date +'%Y-%m-%d'))" \
+            --body "The workflow failed. See run: [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" \
+    
